@@ -5,5 +5,7 @@
   "project_name": "Ramp kit boilerplate",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
   "project_short_description": "Ramp kit boilerplate contains all the boilerplate you need to start creating a new Ramp kit.",
+  "project_task": ["Classification", "Regression", "Detection"],
+  "project_medium": ["Tabular data", "Time-series", "Images"],
   "open_source_license": ["MIT license", "BSD license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"]
 }
