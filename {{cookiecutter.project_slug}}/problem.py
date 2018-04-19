@@ -1,115 +1,133 @@
-import os
+{% set is_classifier = cookiecutter.project_task == 'Classification' %}
+{% set is_regressor = cookiecutter.project_task == 'Regression' %}
+{% set is_detector = cookiecutter.project_task == 'Detection' %}
+"""
+problem.py
+----------
+"""
+import rampwf
 
-import numpy as np
-import pandas as pd
 
-import rampwf as rw
+problem_title = '{{ cookiecutter.project_short_description }}'
 
+# --------------------------------------
+# 1) An object implementing the workflow
+# --------------------------------------
+#   rampwf.workflow.AirPassengers
+#   rampwf.workflow.Classifier
+#   rampwf.workflow.Clusterer
+#   rampwf.workflow.DrugSpectra
+#   rampwf.workflow.ElNino
+#   rampwf.workflow.FeatureExtractor
+#   rampwf.workflow.FeatureExtractorClassifier
+#   rampwf.workflow.FeatureExtractorRegressor
+#   rampwf.workflow.ImageClassifier
+#   rampwf.workflow.SimplifiedImageClassifier
+#   rampwf.workflow.ObjectDetector
+#   rampwf.workflow.Regressor
+#   rampwf.workflow.TimeSeriesFeatureExtractor
+#   rampwf.workflow.GridFeatureExtractorClassifier
 
-problem_title = 'Mars craters detection and classification'
-# A type (class) which will be used to create wrapper objects for y_pred
-Predictions = rw.prediction_types.make_detection()
-# An object implementing the workflow
-workflow = rw.workflows.ObjectDetector()
+workflow = ...
 
-# The overlap between adjacent patches is 56 pixels
-# The scoring region is chosen so that despite the overlap,
-# no crater is scored twice, hence the boundaries of
-# 28 = 56 / 2 and 196 = 224 - 56 / 2
-minipatch = [28, 196, 28, 196]
+# -------------------------------------------------------------------
+# 2) A prediction type (class) to create wrapper objects for `y_pred`,
+# -------------------------------------------------------------------
+#   rampwf.prediction_types.make_clustering
+#   rampwf.prediction_types.make_combined
+#   rampwf.prediction_types.make_detection
+#   rampwf.prediction_types.make_multiclass
+#   rampwf.prediction_types.make_regression
+
+Predictions = ...
+
+# ----------------------------------------------------------------
+# 3) A list of metrics to test the predictions against (minimum 1)
+# ----------------------------------------------------------------
+#   rampwf.score_types.Accuracy
+#   rampwf.score_types.BalancedAccuracy
+#   rampwf.score_types.BaseScoreType
+#   rampwf.score_types.BrierScore
+#   rampwf.score_types.BrierScoreReliability
+#   rampwf.score_types.BrierScoreResolution
+#   rampwf.score_types.BrierSkillScore
+#   rampwf.score_types.ClassificationError
+#   rampwf.score_types.ClusteringEfficiency
+#   rampwf.score_types.Combined
+#   rampwf.score_types.DetectionPrecision
+#   rampwf.score_types.DetectionRecall
+#   rampwf.score_types.DetectionAveragePrecision
+#   rampwf.score_types.F1Above
+#   rampwf.score_types.MacroAveragedRecall
+#   rampwf.score_types.MakeCombined
+#   rampwf.score_types.MADCenter
+#   rampwf.score_types.MADRadius
+#   rampwf.score_types.MARE
+#   rampwf.score_types.NegativeLogLikelihood
+#   rampwf.score_types.NormalizedGini
+#   rampwf.score_types.OSPA
+#   rampwf.score_types.RelativeRMSE
+#   rampwf.score_types.RMSE
+#   rampwf.score_types.ROCAUC
+#   rampwf.score_types.SCP
+#   rampwf.score_types.SoftAccuracy
 
 score_types = [
-    rw.score_types.OSPA(minipatch=minipatch),
-    rw.score_types.SCP(shape=(224, 224), minipatch=minipatch),
-    rw.score_types.DetectionAveragePrecision(name='ap'),
-    rw.score_types.DetectionPrecision(
-        name='prec(0)', iou_threshold=0.0, minipatch=minipatch),
-    rw.score_types.DetectionPrecision(
-        name='prec(0.5)', iou_threshold=0.5, minipatch=minipatch),
-    rw.score_types.DetectionPrecision(
-        name='prec(0.9)', iou_threshold=0.9, minipatch=minipatch),
-    rw.score_types.DetectionRecall(
-        name='rec(0)', iou_threshold=0.0, minipatch=minipatch),
-    rw.score_types.DetectionRecall(
-        name='rec(0.5)', iou_threshold=0.5, minipatch=minipatch),
-    rw.score_types.DetectionRecall(
-        name='rec(0.9)', iou_threshold=0.9, minipatch=minipatch),
-    rw.score_types.MADCenter(name='madc', minipatch=minipatch),
-    rw.score_types.MADRadius(name='madr', minipatch=minipatch)
+
 ]
 
+# --------------------------------------------------------------------------
+# 4) A cross-validation scheme in the form of a function that returns a list
+#    of array indices for the training AND testing data
+# --------------------------------------------------------------------------
+# This can be done manually, e.g.
+#
+#   def get_cv(X, y):
+#       n = len(X)
+#       v = n // 2
+#       return [(np.r_[0:v], np.r_[v:n]),
+#               (np.r_[v:n], np.r_[0:v])]
+#
+# or using `scikit-learn` utilities, e.g.
+#
+#   def get_cv(X, y):
+#       from sklearn.model_selection import StratifiedShuffleSplit
+#       cv = StratifiedShuffleSplit(n_splits=2, test_size=0.2, random_state=57)
+#       return cv.split(X, y)
 
 def get_cv(X, y):
-    # 3 quadrangles for training have not exactly the same size,
-    # but for simplicity just cut in 3
-    # for each fold use one quadrangle as test set, the other two as training
+    pass
 
-    n_tot = len(X)
-    n1 = n_tot // 3
-    n2 = n1 * 2
+# ------------------------------------------------------------
+# 5) A method that can read both the training and testing data
+# ------------------------------------------------------------
+#
+#   def _read_data(path, dataset):
+#       import pandas
+#       data = pandas.read_csv(
+#           os.path.join(path, 'data', '{}.csv'.format(dataset)))
+#       y = data[<target_column_name>].values
+#       X = data.drop([<target_column_name>], axis=1).values
+#       return X, y
+#
+# For heavy datesets, a smaller version of the data should be provided
+# as `_mini` files e.g. for `train.csv` file, provide a `train_mini.csv`.
+# Therefor the `_read_data` method should implement a way to read these
+# smaller files using as trigger the environment variable `RAMP_TEST_MODE`.
+#
+#   def _read_data(path, dataset):
+#       import os
+#       if os.getenv('RAMP_TEST_MODE', 0):
+#           suffix = '_mini'
+#       else:
+#           suffit = ''
+#       data = pandas.read_csv(
+#           os.path.join(path, 'data', '{}{}.csv'.format(dataset, suffix)))
+#       ...
+#       return X, y
 
-    return [(np.r_[0:n2], np.r_[n2:n_tot]),
-            (np.r_[n1:n_tot], np.r_[0:n1]),
-            (np.r_[0:n1, n2:n_tot], np.r_[n1:n2])]
-
-
-def _read_data(path, typ):
-    """
-    Read and process data and labels.
-
-    Parameters
-    ----------
-    path : path to directory that has 'data' subdir
-    typ : {'train', 'test'}
-
-    Returns
-    -------
-    X, y data
-
-    """
-    test = os.getenv('RAMP_TEST_MODE', 0)
-
-    if test:
-        suffix = '_mini'
-    else:
-        suffix = ''
-
-    try:
-        data_path = os.path.join(path, 'data',
-                                 'data_{0}{1}.npy'.format(typ, suffix))
-        src = np.load(data_path, mmap_mode='r')
-
-        labels_path = os.path.join(path, 'data',
-                                   'labels_{0}{1}.csv'.format(typ, suffix))
-        labels = pd.read_csv(labels_path)
-    except IOError:
-        raise IOError("'data/data_{0}.npy' and 'data/labels_{0}.csv' are not "
-                      "found. Ensure you ran 'python download_data.py' to "
-                      "obtain the train/test data".format(typ))
-
-    # convert the dataframe with crater positions to list of
-    # list of (x, y, radius) tuples (list of arrays of shape (n, 3) with n
-    # true craters on an image
-
-    # determine locations of craters for each patch in the labels array
-    n_true_patches = labels.groupby('i').size().reindex(
-        range(src.shape[0]), fill_value=0).values
-    # make cumulative sum to obtain start/stop to slice the labels
-    n_cum = np.array(n_true_patches).cumsum()
-    n_cum = np.insert(n_cum, 0, 0)
-
-    labels_array = labels[['row_p', 'col_p', 'radius_p']].values
-    y = [[tuple(x) for x in labels_array[i:j]]
-         for i, j in zip(n_cum[:-1], n_cum[1:])]
-    # convert list to object array of lists
-    y_array = np.empty(len(y), dtype=object)
-    y_array[:] = y
-
-    if test:
-        # return src, y
-        return src[:30], y_array[:30]
-    else:
-        return src, y_array
+def _read_data(path, dataset):
+    pass
 
 
 def get_test_data(path='.'):
