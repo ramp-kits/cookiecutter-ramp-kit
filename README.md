@@ -14,7 +14,7 @@ This is the official RAMP kit boilerplate to help you setup a kit for your proje
   ```bash
   cookiecutter gh:ramp-kits/cookiecutter-ramp-kit
   ```
-  Additional information on the prompted variables can be found [here][#Template-variables].
+  Additional information on the prompted variables can be found [here](#Template-variables).
 
 ## Getting the instructions
 
