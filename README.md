@@ -8,11 +8,11 @@ This is the official RAMP kit boilerplate using [`cookiecutter`][cc] to help you
   ```bash
   pip install cookiecutter
   ```
-  or [alternative methods][ccinstall].
+  or use [alternative methods][ccinstall].
 
 2. run the following command and follow the instructions in your terminal
   ```bash
-  cookiecutter gh:ramp-kits/cookiecutter-ramp-kit
+  cookiecutter gh:ramp-kits/cookiecutter_ramp_kit
   ```
 
 You'll be prompted for:
@@ -26,7 +26,7 @@ You'll be prompted for:
 - the type of input data
 - the choice of an open source license (or not)
 
-**This information will be used to set up the project (inner text and links)  will not be collected or tracked**
+**This information will be used to set up the project (inner text and links) but will not be collected or tracked**
 
 
 [ccinstall]: https://cookiecutter.readthedocs.io/en/latest/installation.html
