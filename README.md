@@ -12,7 +12,7 @@ This is the official RAMP kit boilerplate to help you setup a kit for your proje
 
 2. run the following command and follow the terminal instructions
   ```bash
-  cookiecutter gh:ramp-kits/cookiecutter-ramp-kit
+  cookiecutter gh:ramp-kits/cookiecutter_ramp_kit
   ```
   Additional information on the prompted variables can be found [here](#Template-variables).
 
