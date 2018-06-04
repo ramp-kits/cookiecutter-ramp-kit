@@ -8,3 +8,6 @@ data
 
 # IPython checkpoints
 .ipynb_checkpoints
+
+# Starting kit instructions
+INSTRUCTIONS.md
