@@ -13,20 +13,20 @@ problem_title = '{{ cookiecutter.project_short_description }}'
 # --------------------------------------
 # 1) An object implementing the workflow
 # --------------------------------------
-#   rampwf.workflow.AirPassengers
-#   rampwf.workflow.Classifier
-#   rampwf.workflow.Clusterer
-#   rampwf.workflow.DrugSpectra
-#   rampwf.workflow.ElNino
-#   rampwf.workflow.FeatureExtractor
-#   rampwf.workflow.FeatureExtractorClassifier
-#   rampwf.workflow.FeatureExtractorRegressor
-#   rampwf.workflow.ImageClassifier
-#   rampwf.workflow.SimplifiedImageClassifier
-#   rampwf.workflow.ObjectDetector
-#   rampwf.workflow.Regressor
-#   rampwf.workflow.TimeSeriesFeatureExtractor
-#   rampwf.workflow.GridFeatureExtractorClassifier
+#   rampwf.workflows.AirPassengers
+#   rampwf.workflows.Classifier
+#   rampwf.workflows.Clusterer
+#   rampwf.workflows.DrugSpectra
+#   rampwf.workflows.ElNino
+#   rampwf.workflows.FeatureExtractor
+#   rampwf.workflows.FeatureExtractorClassifier
+#   rampwf.workflows.FeatureExtractorRegressor
+#   rampwf.workflows.ImageClassifier
+#   rampwf.workflows.SimplifiedImageClassifier
+#   rampwf.workflows.ObjectDetector
+#   rampwf.workflows.Regressor
+#   rampwf.workflows.TimeSeriesFeatureExtractor
+#   rampwf.workflows.GridFeatureExtractorClassifier
 
 workflow = ...
 
