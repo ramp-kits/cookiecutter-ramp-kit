@@ -63,8 +63,8 @@ _Authors: {{ cookiecutter.full_name }}_
 This package was created with [Cookiecutter][cookie] and the [`ramp-kits/cookiecutter-ramp-kit`][kit] project template
 issued by the [Paris-Saclay Center for Data Science][cds].
 
-[travis]: https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }})
-[ramp]: https://ramp.studio/events/{{ cookiecutter.project_slug }})
+[travis]: https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+[ramp]: https://ramp.studio/events/{{ cookiecutter.project_slug }}
 [cookie]: https://github.com/audreyr/cookiecutter
 [kit]: https://github.com/ramp-kits/cookiecutter-ramp-kit
 [cds]: https://www.datascience-paris-saclay.fr/
