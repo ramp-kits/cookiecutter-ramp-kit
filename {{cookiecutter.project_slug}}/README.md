@@ -3,7 +3,7 @@
 {% for _ in cookiecutter.project_name %}={% endfor %}
 
 {% if is_open_source %}
-[![Build Status](https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg?branch=master)][travis]
+[![Build Status][tbadge]][travis]
 {%- endif %}
 
 _Authors: {{ cookiecutter.full_name }}_
@@ -14,12 +14,12 @@ _Authors: {{ cookiecutter.full_name }}_
 
 1. clone this repository
   ```
-  git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+  git clone https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}
   cd {{ cookiecutter.project_slug }}
   ```
 
 2. install the dependancies
-  - with [conda](https://conda.io/miniconda.html)
+  - with [conda][miniconda]
   ```
   conda install -y -c conda conda-env     # First install conda-env
   conda env create                        # Use environment.yml to create the 'astrophd_tutorial' env
@@ -35,11 +35,11 @@ _Authors: {{ cookiecutter.full_name }}_
   python download_data.py        # quick-test data for testing ~16Mo
   ```
 
-4. get started with the [dedicated notebook]({{ cookiecutter.project_slug }}_starting_kit.ipynb).
+4. get started with the [dedicated notebook]({{cookiecutter.project_slug}}_starting_kit.ipynb).
 
 ## New submissions
 
-1. create a new submission "<new_sub>" by building on the existing ones
+1. create a new submission `<new_sub>` by building on the existing ones
   ```
   cp -r submissions/starting_kit submissions/<new_sub>
   ```
@@ -63,8 +63,11 @@ _Authors: {{ cookiecutter.full_name }}_
 This package was created with [Cookiecutter][cookie] and the [`ramp-kits/cookiecutter-ramp-kit`][kit] project template
 issued by the [Paris-Saclay Center for Data Science][cds].
 
-[travis]: https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
-[ramp]: https://ramp.studio/events/{{ cookiecutter.project_slug }}
+
+[tbadge]: https://travis-ci.org/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}.svg?branch=master
+[travis]: https://travis-ci.org/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}
+[miniconda]: https://conda.io/miniconda.html
+[ramp]: https://ramp.studio/events/{{cookiecutter.project_slug}}
 [cookie]: https://github.com/audreyr/cookiecutter
 [kit]: https://github.com/ramp-kits/cookiecutter-ramp-kit
 [cds]: https://www.datascience-paris-saclay.fr/
