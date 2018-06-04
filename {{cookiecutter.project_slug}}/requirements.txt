@@ -1,5 +1,7 @@
 flake8
 numpy
 scipy
+pandas
 jupyter
 scikit-learn
+https://api.github.com/repos/paris-saclay-cds/ramp-workflow/zipball/master
