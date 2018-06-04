@@ -1,17 +1,20 @@
-Instructions for setting up the RAMP kit
-========================================
+Instructions for setting up a RAMP kit
+======================================
 
-Hi, 
+**Hi, thank you for using RAMP !**
 
-thank you for using RAMP !
+_Please find below personalised instructions (based on your choices) to guide you through the setup of a RAMP kit._
 
-_Please find below some personalised instructions (based on your choices) to guide you through the setup of a RAMP kit._
+To get an interactive version of these instructions, use [`pandoc`][pandoc] to convert this document to HTML
+```
+pandoc --to html INSTRUCTIONS.md > INSTRUCTIONS.html
+```
 
 ---
 
-You have freshly started a RAMP kit project `{{cookiecutter.project_slug}}` with [cookiecutter][cookie].
+You have freshly started a RAMP kit project entitled `{{cookiecutter.project_slug}}`.
 
-The structure of the project should look like (with minor differences depending on your choices).
+The structure of the project should be (with minor differences depending on your choices).
 
 ```
 {{cookiecutter.project_slug}}/
@@ -43,7 +46,7 @@ Setup checklist
 
 ### 1. Version the project
 
-- go to `https://github.com/{{cookiecutter.github_username}}/new`   
+- go to [`https://github.com/{{cookiecutter.github_username}}/new`][newrepo]   
   to create a new **empty** repository called `{{cookiecutter.project_slug}}`.
 
 - commit the project
@@ -51,7 +54,7 @@ Setup checklist
   cd {{cookiecutter.project_slug}}
   git init
   git remote add origin https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}.git
-  git add .   # thanks to the .gitignore, this file will not be added
+  git add .   # thanks to the .gitignore, the INSTRUCTIONS will not be versioned
   git commit -m "Initial commit"
   git push -u origin master
   ```
@@ -72,12 +75,20 @@ This will install the [`ramp-workflow`][rampwf] library as well as commonly used
 
 ### 3. Fill in the `problem.py`
 
+TBD
+
 #### List of existing ramp-kits related to your problem
+
+TBD
 
 
 ### 4. Write a `starting_kit` submission
 
+TBD
+
 ### 5. Create the `download_data.py` script
+
+TBD
 
 ### 6. Modify the notebook
 
@@ -95,6 +106,7 @@ This is a way to ensure the whole workflow can run from one end to another witho
 To enable these builds, follow the instructions [here][travisinstr].
 
 When you commit a modification to your project, Travis will then
+
 - spawn a kernel
 - install [Miniconda][miniconda]
 - install the Python dependencies (among which `ramp-workflow`)
@@ -106,6 +118,8 @@ On top of the [README.md][readme] file, a small badge will let you know if the b
 and if it failed, you will have access to the terminal output by clicking on it.
 
 
+[pandoc]: http://pandoc.org/installing.html
+[newrepo]: https://github.com/{{cookiecutter.github_username}}/new
 [miniconda]: https://conda.io/miniconda.html
 [rampwf]: https://github.com/paris-saclay-cds/ramp-workflow
 [cookie]: https://github.com/audreyr/cookiecutter
