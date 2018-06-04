@@ -18,12 +18,12 @@ _Authors: {{ cookiecutter.full_name }}_
   cd {{ cookiecutter.project_slug }}
   ```
 
-2. install the dependancies
+2. install dependencies
   - with [conda][miniconda]
   ```
-  conda install -y -c conda conda-env     # First install conda-env
-  conda env create                        # Use environment.yml to create the 'astrophd_tutorial' env
-  source activate {{ cookiecutter.project_slug }}       # Activates the virtual env
+  conda install -y -c conda conda-env     # install conda-env
+  conda env create -f environment.yml     # use environment.yml to create the '{{cookiecutter.project_slug}}' env
+  source activate {{cookiecutter.project_slug}}     # activate the virtual env
   ```
   - without `conda` (best to use a **virtual environment**)
   ```
